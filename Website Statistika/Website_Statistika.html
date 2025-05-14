@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Program Studi Statistika - Institut Agama Kristen Negeri Tarutung</title>
+<style>
+  /* Reset & base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9faff;
+    color: #222;
+    line-height: 1.6;
+  }
+  a {
+    color: #01579b;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 1rem;
+  }
+
+  /* Header */
+  header {
+    background: #003366;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.2);
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2rem;
+  }
+  header p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin-top: 0.3rem;
+  }
+
+  /* Navigation */
+  nav {
+    background: #01497c;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+  nav a {
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  nav a:hover, nav a.active {
+    background: #0288d1;
+  }
+
+  /* Sections styling */
+  section {
+    background: white;
+    padding: 1.8rem 2rem;
+    margin: 1.5rem 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 0.05);
+  }
+  section h2 {
+    border-bottom: 3px solid #0288d1;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1.2rem;
+    font-weight: 700;
+    color: #003366;
+  }
+
+  /* Profile */
+  .visi-misi, .akreditasi, .lambang {
+    margin-bottom: 1rem;
+  }
+  .lambang img {
+    max-width: 140px;
+    height: auto;
+    display: block;
+    margin: 0.8rem 0;
+  }
+
+  /* Kurikulum */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  table thead {
+    background: #0288d1;
+    color: white;
+  }
+  table th, table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  table tr:nth-child(even) {
+    background: #f2f9ff;
+  }
+  .total-sks {
+    font-weight: 700;
+    text-align: right;
+    margin-top: 0.5rem;
+  }
+
+  /* Dosen Info */
+  .dosen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 1.3rem;
+  }
+  .dosen-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #fefefe;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+  }
+  .dosen-card h3 {
+    margin-top: 0;
+    color: #01579b;
+  }
+  .dosen-contact p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+  }
+  .dosen-contact a {
+    word-break: break-all;
+  }
+
+  /* Alumni */
+  .alumni-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+  .alumni-list li {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #eee;
+    color: #666;
+  }
+  .tahun-lulus {
+    font-weight: 600;
+    color: #444;
+  }
+
+  /* Galeri */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    gap: 1rem;
+  }
+  .gallery-grid img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    height: 170px;
+    box-shadow: 0 3px 9px rgb(0 0 0 / 0.15);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .gallery-grid img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Berita dan Kegiatan */
+  .berita-category {
+    margin-bottom: 1rem;
+  }
+  .berita-category h3 {
+    color: #0277bd;
+    border-bottom: 2px solid #81d4fa;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+  .berita-item {
+    background: #f0f7ff;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.6rem;
+    border-radius: 6px;
+    color: #444;
+    font-style: italic;
+  }
+
+  /* Form */
+  form {
+    max-width: 500px;
+    margin: auto;
+  }
+  form label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    color: #003366;
+  }
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="number"],
+  form textarea {
+    width: 100%;
+    padding: 0.6rem 0.9rem;
+    margin-bottom: 1rem;
+    border: 1.8px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s;
+  }
+  form input[type="text"]:focus,
+  form input[type="email"]:focus,
+  form input[type="number"]:focus,
+  form textarea:focus {
+    border-color: #0288d1;
+    outline: none;
+  }
+  form textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  .btn-submit {
+    background: #0288d1;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.4rem;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  .btn-submit:hover {
+    background: #0277bd;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    nav {
+      gap: 0.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Program Studi Statistika</h1>
+  <p>Institut Agama Kristen Negeri Tarutung</p>
+</header>
+
+<nav>
+  <a href="#profil" class="active">Profil</a>
+  <a href="#kurikulum">Struktur Kurikulum</a>
+  <a href="#dosen">Dosen</a>
+  <a href="#alumni">Alumni</a>
+  <a href="#galeri">Galeri</a>
+  <a href="#berita">Berita & Kegiatan</a>
+  <a href="#kontak">Kontak</a>
+</nav>
+
+<div class="container">
+
+  <section id="profil" aria-label="Profil Program Studi">
+    <h2>Profil Program Studi</h2>
+    <div class="visi-misi">
+      <h3>Visi</h3>
+      <p>Menjadi program studi unggul di tahun 2027 dan menghasilkan lulusan yang siap memenuhi kebutuhan masyarakat di bidang statistika dan sains data serta mampu berwirausaha.</p>
+    </div>
+    <div class="visi-misi">
+      <h3>Misi</h3>
+      <ul>
+        <li>Mempersiapkan program studi secara administrasi dan tridharma menuju unggul.</li>
+        <li>Menjalankan kurikulum program studi yang relevan dengan perkembangan ilmu statistika dan kebutuhan masyarakat disertai nilai-nilai kewirausahaan di setiap mata kuliahnya.</li>
+        <li>Ikut dan aktif dalam perkumpulan di bidang statistika seperti Forstat, ISI dan Badan Statistika UN Asia-Pasific.</li>
+        <li>Meningkatkan kompetensi Dosen dan mahasiswa/i melalui sertifikasi di Lembaga Sertifikasi Profesi di bidang statistika dan data sains baik tingkat nasional maupun internasional.</li>
+      </ul>
+    </div>
+    <div class="akreditasi">
+      <h3>Akreditasi</h3>
+      <p>Akreditasi Program Studi: B</p>
+      <p>Terakreditasi oleh: BAN-PT</p>
+      <p>Nomor SK: 1234/SK/BAN-PT/Akred/2023</p>
+    </div>
+    <div class="lambang">
+      <h3>Lambang Institut Agama Kristen Negeri Tarutung</h3>
+      <img src="https://upload.wikimedia.org/wikipedia/id/thumb/3/3a/Logo_Institut_Agama_Kristen_Negeri_Tarutung.svg/1200px-Logo_Institut_Agama_Kristen_Negeri_Tarutung.svg.png" alt="Lambang Institut Agama Kristen Negeri Tarutung" />
+    </div>
+  </section>
+
+  <section id="kurikulum" aria-label="Struktur Kurikulum">
+    <h2>Struktur Kurikulum</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Mata Kuliah</th>
+          <th>Jumlah SKS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Pendidikan Agama</td><td>2</td></tr>
+        <tr><td>Pendidikan Pancasila</td><td>2</td></tr>
+        <tr><td>Bahasa Inggris</td><td>2</td></tr>
+        <tr><td>Ekonomi dan Keuangan I</td><td>2</td></tr>
+        <tr><td>Matematika Diskrit I</td><td>3</td></tr>
+        <tr><td>Kalkulus I</td><td>3</td></tr>
+        <tr><td>Statistika Dasar</td><td>3</td></tr>
+        <tr><td>Algoritma dan Pemrograman</td><td>3</td></tr>
+        <tr><td>Pendidikan Kewarganegaraan</td><td>2</td></tr>
+        <tr><td>Bahasa Indonesia untuk komunikasi Ilmiah</td><td>2</td></tr>
+        <tr><td>Matematika Ekonomi dan Keuangan</td><td>3</td></tr>
+        <tr><td>Matematika Diskrit II</td><td>3</td></tr>
+        <tr><td>Kalkulus II</td><td>3</td></tr>
+        <tr><td>Teori Peluang</td><td>3</td></tr>
+        <tr><td>Pemrograman Phyton & SQL</td><td>2</td></tr>
+        <tr><td>SPSS</td><td>2</td></tr>
+        <tr><td>Etika Profesi Statistisi</td><td>2</td></tr>
+        <tr><td>Analisis Rill</td><td>2</td></tr>
+        <tr><td>Mode Linear</td><td>3</td></tr>
+        <tr><td>Kalkulus Diferensial</td><td>3</td></tr>
+        <tr><td>Teori Peluang II</td><td>3</td></tr>
+        <tr><td>Metode Statistika</td><td>2</td></tr>
+        <tr><td>Metode Sampling dan survei</td><td>3</td></tr>
+        <tr><td>Statistika Multivariat</td><td>3</td></tr>
+        <tr><td>Basis Data dan Penelusuran Data SQL</td><td>3</td></tr>
+        <tr><td>Analisis dan Metode Numerik</td><td>2</td></tr>
+        <tr><td>Sosiologi Demografi Dan Geografi</td><td>2</td></tr>
+        <tr><td>Proses Stokastik</td><td>3</td></tr>
+        <tr><td>Kolerasi Dan Analisis Regresi</td><td>3</td></tr>
+        <tr><td>Analisis dan Perancangan Survei</td><td>3</td></tr>
+        <tr><td>Analisis Data Kategori</td><td>3</td></tr>
+        <tr><td>Rancangan Percobaan</td><td>3</td></tr>
+        <tr><td>Statistika Inferensia</td><td>3</td></tr>
+        <tr><td>Statistika Komputasi</td><td>2</td></tr>
+        <tr><td>Kewirausahaan</td><td>2</td></tr>
+        <tr><td>Statistika Pengawasan Kualitas</td><td>3</td></tr>
+        <tr><td>Pengantar Sains Data Dan Visualisasi & Eksplorasi Data</td><td>2</td></tr>
+        <tr><td>Analisis Runtun Waktu</td><td>3</td></tr>
+        <tr><td>Statistika Non-Parametrik</td><td>3</td></tr>
+        <tr><td>Analisis Variansi</td><td>2</td></tr>
+        <tr><td>Analisis Multivariat</td><td>3</td></tr>
+        <tr><td>Pengumpulan Data</td><td>2</td></tr>
+        <tr><td>MK Pilihan</td><td>3</td></tr>
+        <tr><td>PKL Semester Antar</td><td>3</td></tr>
+        <tr><td>Metodologi Penelitian</td><td>3</td></tr>
+        <tr><td>Statistik Spasial</td><td>3</td></tr>
+        <tr><td>MK Pilihan 2</td><td>3</td></tr>
+        <tr><td>Ekonometrika</td><td>3</td></tr>
+        <tr><td>Statistika Demografi Dan Keagamaan</td><td>2</td></tr>
+        <tr><td>Prediksi Modern Dan Pembelajaran Mesin</td><td>3</td></tr>
+        <tr><td>Analisa Bertahan</td><td>3</td></tr>
+        <tr><td>Penulisan Karya Ilmiah</td><td>2</td></tr>
+        <tr><td>Ekplorasi dan visualisasi Data</td><td>3</td></tr>
+        <tr><td>Tugas Akhir</td><td>6</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="dosen" aria-label="Informasi Dosen dan Kontak">
+    <h2>Informasi Dosen dan Kontak</h2>
+    <div class="dosen-grid">
+      <article class="dosen-card">
+        <h3>Yulia Sitepu, M.Pd.</h3>
+        <p><strong>Jabatan:</strong> Kepala Prodi</p>
+        <div class="dosen-contact">
+          <p><strong>Kontak:</strong> +62 813 6129 8765</p>
+          <p><strong>Email:</strong> <a href="mailto:iakntarutung@gmail.com">iakntarutung@gmail.com</a></p>
+        </div>
+      </article>
+      <article class="dosen-card">
+        <h3>Eduward H Hutabarat, M.Si.</h3>
+        <p><strong>Jabatan:</strong> Sekretaris Prodi</p>
+        <div class="dosen-contact">
+          <p><strong>Kontak:</strong> +62 852 9662 4137</p>
+          <p><strong>Email:</strong> <a href="mailto:iakntarutung@gmail.com">iakntarutung@gmail.com</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="alumni" aria-label="Alumni">
+    <h2>Alumni</h2>
+    <p>Daftar Nama Alumni: <em>(Sedang dikosongkan)</em></p>
+    <ul class="alumni-list">
+      <!-- Empty as requested -->
+    </ul>
+    <p class="tahun-lulus"><strong>Tahun Lulusan:</strong></p>
+    <ul>
+      <li>2015</li>
+      <li>2016</li>
+      <li>2017</li>
+      <li>2018</li>
+      <li>2019</li>
+      <li>2020</li>
+      <li>2021</li>
+      <li>2022</li>
+      <li>2023</li>
+    </ul>
+  </section>
+
+  <section id="galeri" aria-label="Galeri Kegiatan">
+    <h2>Galeri Kegiatan</h2>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=80" alt="Kegiatan Seminar Statistik" />
+      <img src="https://images.unsplash.com/photo-1519337265831-281ec6cc8514?auto=format&fit=crop&w=400&q=80" alt="Diskusi Dosen dan Mahasiswa" />
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=80" alt="Praktikum Statistik di Laboratorium" />
+    </div>
+  </section>
+
+  <section id="berita" aria-label="Berita dan Kegiatan">
+    <h2>Berita & Kegiatan</h2>
+    <div class="berita-category">
+      <h3>Pengumuman</h3>
+      <div class="berita-item">Belum ada pengumuman saat ini.</div>
+    </div>
+    <div class="berita-category">
+      <h3>Kegiatan Akademik</h3>
+      <div class="berita-item">Kegiatan akademik akan diumumkan kemudian.</div>
+    </div>
+    <div class="berita-category">
+      <h3>Seminar</h3>
+      <div class="berita-item">Informasi seminar akan segera tersedia.</div>
+    </div>
+  </section>
+
+  <section id="kontak" aria-label="Formulir Kontak">
+    <h2>Formulir Kontak</h2>
+    <form id="contactForm" novalidate>
+      <label for="name">Nama</label>
+      <input type="text" id="name" name="name" placeholder="Nama lengkap Anda" required>
+
+      <label for="age">Usia</label>
+      <input type="number" id="age" name="age" placeholder="Usia Anda" min="1" max="120" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Alamat email aktif" required>
+
+      <label for="phone">Telepon</label>
+      <input type="text" id="phone" name="phone" placeholder="Nomor telepon" required pattern="^(?:\+62|62|0)[0-9]{9,13}$" title="Format telepon Indonesia, contoh: 081234567890">
+
+      <label for="address">Alamat</label>
+      <textarea id="address" name="address" placeholder="Alamat tempat tinggal" required></textarea>
+
+      <button type="submit" class="btn-submit">Kirim</button>
+    </form>
+  </section>
+
+</div>
+
+<footer>
+  &copy; 2024 Program Studi Statistika - Institut Agama Kristen Negeri Tarutung
+</footer>
+
+<script>
+  // Smooth scroll for nav links and active nav highlight
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const id = link.getAttribute('href').slice(1);
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  // Contact form validation and feedback
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Collect data (simulate submission)
+    const formData = {
+      nama: form.name.value.trim(),
+      usia: form.age.value.trim(),
+      email: form.email.value.trim(),
+      telepon: form.phone.value.trim(),
+      alamat: form.address.value.trim(),
+    };
+    alert('Terima kasih sudah mengirimkan formulir, ' + formData.nama + '!');
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
+
+extension.webdavUpload
